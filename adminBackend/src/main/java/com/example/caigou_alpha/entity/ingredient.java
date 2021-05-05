@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ingredient {
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;

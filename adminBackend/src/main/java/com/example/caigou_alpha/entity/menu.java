@@ -12,7 +12,7 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class menu {
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;

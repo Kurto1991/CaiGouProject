@@ -1,16 +1,15 @@
 package com.example.caigou_alpha.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
  *用于管理员登陆的验证
  *
  */
+
+@Table(name = "app_admin")
 @Entity
-public class adminUser {//管理员用户表用于登陆
+public class AdminUser {//管理员用户表用于登陆
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 * 关联：用户表，表示该用户下的订单；菜谱表，需要检索该菜谱的预览信息
 *
  */
-public class order {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;
