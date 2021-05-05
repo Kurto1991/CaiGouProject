@@ -1,6 +1,7 @@
 package com.example.caigou_alpha.service;
 
 import com.example.caigou_alpha.dao.UserOrderDao;
+import com.example.caigou_alpha.entity.User;
 import com.example.caigou_alpha.entity.UserOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class OrderService {

@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserOrderDao extends JpaRepository<UserOrder,Integer> {
-//    @Query(value = "select * from order", nativeQuery = true)
-//    Page<Order> findAllpage(Pageable pageable);
 }

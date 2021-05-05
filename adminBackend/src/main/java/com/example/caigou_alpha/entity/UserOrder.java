@@ -14,6 +14,7 @@ public class UserOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;
+    @Column(name = "user_id")
     private int user_id;
     private String remark;
     private int status;
