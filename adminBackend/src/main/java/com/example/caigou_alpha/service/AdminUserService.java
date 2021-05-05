@@ -14,4 +14,8 @@ public class AdminUserService {
     public AdminUser findById(Integer id){
         return adminuserDao.findById(id).orElse(null);
     }
+
+    public AdminUser findByAccount(Integer account){
+        return adminuserDao.findByAccount(account);
+    }
 }

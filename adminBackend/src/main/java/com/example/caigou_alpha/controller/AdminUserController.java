@@ -1,6 +1,7 @@
 package com.example.caigou_alpha.controller;
 
 
+import com.example.caigou_alpha.common.Result;
 import com.example.caigou_alpha.entity.AdminUser;
 import com.example.caigou_alpha.service.AdminUserService;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
         methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController//标识此接口中所有都是返回json数据
 @RequestMapping("/adminUser")//给访问链接加个前缀
-public class AdminUserContorller {
+public class AdminUserController {
     @Resource
     private AdminUserService adminUserService;
 
@@ -24,7 +25,12 @@ public class AdminUserContorller {
      * 若存在返回该用户，不存在返回NULL
      */
     @GetMapping("/getById/{id}")
-    public AdminUser findById(@PathVariable Integer id){
-        return adminUserService.findById(id);
+    public Result<AdminUser> findById(@PathVariable Integer id){
+        return Result.success(adminUserService.findById(id));
+    }
+
+    @GetMapping("/getByAccount/{account}")
+    public Result<AdminUser> findByAccount(@PathVariable Integer account){
+        return Result.success(adminUserService.findByAccount(account));
     }
 }

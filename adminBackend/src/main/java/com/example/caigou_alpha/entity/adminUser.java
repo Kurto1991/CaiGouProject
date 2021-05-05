@@ -15,7 +15,16 @@ public class AdminUser {//管理员用户表用于登陆
     private int id;
     private String app_admin_name;
     private int app_admin_num;
-    private String password;
+
+    public String getApp_admin_password() {
+        return app_admin_password;
+    }
+
+    public void setApp_admin_password(String app_admin_password) {
+        this.app_admin_password = app_admin_password;
+    }
+
+    private String app_admin_password;
     private String avatar;
 
     public int getId() {
@@ -42,13 +51,6 @@ public class AdminUser {//管理员用户表用于登陆
         this.app_admin_num = app_admin_num;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getAvatar() {
         return avatar;

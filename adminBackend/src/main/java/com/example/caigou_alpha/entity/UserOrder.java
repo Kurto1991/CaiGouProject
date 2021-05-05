@@ -1,18 +1,16 @@
 package com.example.caigou_alpha.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user_order")
 /*
 *
 * 订单表用于存放订单基本信息
 * 关联：用户表，表示该用户下的订单；菜谱表，需要检索该菜谱的预览信息
 *
  */
-public class Order {
+public class UserOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;
@@ -20,7 +18,16 @@ public class Order {
     private String remark;
     private int status;
     private String menus;
+    private int store_id;
     private Double price;
+
+    public int getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(int store_id) {
+        this.store_id = store_id;
+    }
 
     public int getId() {
         return id;
