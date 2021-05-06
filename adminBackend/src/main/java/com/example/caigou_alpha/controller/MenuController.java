@@ -36,13 +36,13 @@ public class MenuController {
     }
 
     @PostMapping("/addMenu")
-    public Result add(@RequestBody Menu menu){
+    public Result add(Menu menu){
         menuService.save(menu);
         return Result.success();
     }
-
+//    @RequestBody
     @PutMapping("/updateMenu")
-    public Result update(@RequestBody Menu menu){
+    public Result update(Menu menu){
         menuService.save(menu);
         return Result.success();
     }
