@@ -19,13 +19,37 @@ public class MenuController {
     @Resource
     private MenuService menuService;
 
-    @GetMapping("/{pageNum}")
+    @GetMapping("/findAll/{pageNum}")
     public Result<Page<Menu>> findAll(@PathVariable Integer pageNum){
         return Result.success(menuService.findPage(pageNum,5));
     }
 
+    /**
+     * 模糊分页查询
+     * @param pageNum
+     * @param name
+     * @return
+     */
     @GetMapping("/findLike")
-    public Result<Page<Menu>> findMenuLike(@RequestParam Integer pageNum,@RequestParam String name){
+    public Result<Page<Menu>> findMenuLike( @RequestParam(required = true)Integer pageNum,@RequestParam(required = true)String name){
         return Result.success(menuService.findLike(pageNum,5,name));
+    }
+
+    @PostMapping("/addMenu")
+    public Result add(@RequestBody Menu menu){
+        menuService.save(menu);
+        return Result.success();
+    }
+
+    @PutMapping("/updateMenu")
+    public Result update(@RequestBody Menu menu){
+        menuService.save(menu);
+        return Result.success();
+    }
+
+    @DeleteMapping("/deleteMenu/{id}")
+    public Result delete(@PathVariable Integer id){
+        menuService.del(id);
+        return Result.success();
     }
 }

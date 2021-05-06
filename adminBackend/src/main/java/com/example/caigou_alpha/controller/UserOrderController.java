@@ -20,7 +20,7 @@ public class UserOrderController {
     @Resource
     private OrderService orderService;
 
-    @GetMapping("/{pageNum}")
+    @GetMapping("/findAll/{pageNum}")
     public Result<Page<UserOrder>> findAll(@PathVariable Integer pageNum){
         return Result.success(orderService.findPage(pageNum,5));
     }

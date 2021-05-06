@@ -18,7 +18,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/findOrderUser/{userId}")
     public Result<User>  findOrderUser(@PathVariable Integer userId){
         return Result.success(userService.findOrderUser(userId));
     }

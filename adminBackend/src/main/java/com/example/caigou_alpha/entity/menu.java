@@ -1,9 +1,6 @@
 package com.example.caigou_alpha.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
  *
@@ -16,10 +13,15 @@ public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//标识主键为自动递增
     private int id;
+    @Column
     private String name;
+    @Column
     private int status;
+    @Column
     private String method;
+    @Column
     private String tags;
+    @Column
     private String avatar;
 
     public int getId() {
