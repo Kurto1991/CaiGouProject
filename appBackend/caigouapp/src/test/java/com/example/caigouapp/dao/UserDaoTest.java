@@ -14,7 +14,7 @@ class UserDaoTest {
 
     @Test
     public  void findOne(){
-        System.out.println(userDao.findById(1).get().toString());
+        System.out.println(userDao.findByAccount_num("1").toString());
 
     }
 }
