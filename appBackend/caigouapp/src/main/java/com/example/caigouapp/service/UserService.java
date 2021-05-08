@@ -27,7 +27,15 @@ public class UserService {
      * @param account_num
      * @return
      */
-//    public User findByAccount(String account_num){
-//        return userDao.findByAccount_num(account_num);
-//    }
+    public User findByAccount(String account_num){
+        return userDao.findByAccount_num(account_num);
+    }
+
+    /**
+     * 创建新用户
+     * @param user
+     */
+    public void saveUser(User user) {
+        userDao.save(user);
+    }
 }
