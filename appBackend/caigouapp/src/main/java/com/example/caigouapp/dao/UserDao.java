@@ -2,6 +2,7 @@ package com.example.caigouapp.dao;
 
 import com.example.caigouapp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+<<<<<<< HEAD
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +24,13 @@ public interface UserDao extends JpaRepository<User,Integer> {
      */
     @Query(value = "select t.tags from User t where t.account_num = :account_num")
     List<User> findByAccount_num(@Param("account_num")Integer account_num);
+=======
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserDao extends JpaRepository<User,Integer> {
+    @Query(value = "SELECT * from user where user.account_num = ?1",nativeQuery = true)
+    User findByAccount_num(String account_num);
+>>>>>>> 6abde5f1f355890dc55c4c2c4a3384fc72b10d87
 }
