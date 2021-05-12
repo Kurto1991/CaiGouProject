@@ -12,12 +12,21 @@ import java.util.List;
 @Repository
 public interface MenuDao extends JpaRepository<Menu,Integer>{
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     List <Menu> findByid(Integer id);
+
+    /**
+     * 菜谱的模糊查询
+     * @param str
+     * @return
+     */
     @Query(value = "select m from Menu m where m.name like %:name% or m.tags like %:name%")
     List<Menu> findMenu (@Param("name") String str);
 
-//    @Query("select m.name,m.method,m.avatar from  Menu m where m.id = :id")
-//    List<String> menuInfo(@Param("id")Integer id);
 
     /**
      * 查找该菜谱的食材列表
@@ -27,21 +36,35 @@ public interface MenuDao extends JpaRepository<Menu,Integer>{
     @Query("select f.food_id_list from MenuFood f where f.menu_id = :id")
     String menu_food_info(@Param("id")Integer id);
 
-//mf.food_id_list,
-//    @Query(value = "select m.id,m.name,m.tags,m.method,m.avatar,mf.food_id_list,mf.food_weight_list from Menu m , MenuFood mf "
-//            +"where m.id = mf.menu_id and m.id=:id")
-//     MenuInfo  findMenuId(@Param("id")Integer id);
+    /**
+     *根据菜谱ID查询菜谱
+     * @param id
+     * @return
+     */
     @Query(value = "select m from Menu m where m.id = :id")
     Menu findByMenu(@Param("id")Integer id);
 
+    /**
+     * 根据菜谱ID查询菜谱食关联表
+     * @param id
+     * @return
+     */
     @Query(value = "select mf from MenuFood mf where mf.menu_id= :id")
     MenuFood findByMenuId(@Param("id")Integer id);
 
+    /**
+     * 根据食材ID获取食材信息
+     * @param id
+     * @return
+     */
     @Query(value = "select f from Food f where f.id = :id")
     Food findByFoodId(@Param("id")Integer id);
 
-//    @Query(value = "select m.id,mf.from Menu m,MenuFood mf")
-
+    /**
+     * 根据菜谱ID查询菜谱
+     * @param id
+     * @return
+     */
     @Query(value = "select m from Menu  m where  m.id = :id")
     Menu selectMenuById(@Param("id")Integer id);
 

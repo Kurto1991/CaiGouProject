@@ -8,13 +8,13 @@ import org.springframework.data.repository.query.Param;
 
 public interface Custom_MenuDao extends JpaRepository<Custom_Menu,Integer> {
 
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @Query(value ="select cm from Custom_Menu cm where cm.menu_id = :id")
-    Custom_Menu selectCustMenuByMid(@Param("id")Integer id);
+//    /**
+//     *根据菜谱ID查询自定义菜谱
+//     * @param id
+//     * @return
+//     */
+//    @Query(value ="select cm from Custom_Menu cm where cm.menu_id = :id")
+//    Custom_Menu selectCustMenuByMid(@Param("id")Integer id);
 
 
     /**

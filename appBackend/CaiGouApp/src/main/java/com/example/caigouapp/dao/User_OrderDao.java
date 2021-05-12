@@ -10,10 +10,19 @@ import java.util.List;
 
 public interface User_OrderDao extends JpaRepository<User_Order,Integer> {
 
-
+    /**
+     * 根据用户ID查询购物车
+     * @param id
+     * @return
+     */
     @Query(value = "select c from Cart c where c.user_id=:user_id")
     Cart selectCartByUserId(@Param("user_id")Integer id);
 
+    /**
+     * 根据用户ID查询用户订单
+     * @param user_id
+     * @return
+     */
     @Query(value = "select o from User_Order o where o.user_id= :user_id")
     List<User_Order> selectUserOrderByUserId(@Param("user_id")Integer user_id);
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+
 @RestController
 public class User_OrderController {
     @Resource
@@ -23,15 +24,19 @@ public class User_OrderController {
     private User_OrderService user_orderService;
     @Resource
     private Custom_MenuService custom_menuService;
+
+    //生成订单
     @RequestMapping(value = "/order",method = RequestMethod.POST)
     public JSONObject creatOrder(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);
+        //得到用户ID
         int user_id = par.getInteger("user_id");
+        //通过购物车实体类对象获取信息
         Cart cart = cartService.findCartById(user_id);
         String str = cart.getCustom_menuid();
-//        System.out.println(111);
-
+        //分割字符串
         String[] A= str.split(",");
+
         User_Order user_order = new User_Order();
 
         //设置订单自定义菜谱列表
@@ -41,11 +46,10 @@ public class User_OrderController {
 
         Double price= 0.00;
 
+        //获得订单的总价
         for (String s : A) {
             int ID = Integer.parseInt(s);
-//            System.out.println(ID);
             Custom_Menu custom_menu = custom_menuService.selectCustMenuById(ID);
-//            System.out.println(custom_menu.toString());
             price += custom_menu.getPrice();
         }
         //价格
@@ -60,6 +64,7 @@ public class User_OrderController {
         return  res;
     }
 
+    //获取订单的详细信息
     @RequestMapping(value = "/order/info",method = RequestMethod.POST)
     public JSONObject getOrderInfo(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);

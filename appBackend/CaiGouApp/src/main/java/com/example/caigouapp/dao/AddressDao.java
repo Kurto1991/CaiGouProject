@@ -10,18 +10,13 @@ import java.util.List;
 
 @Repository
 public interface AddressDao extends JpaRepository<Address,Integer> {
-//    @Modifying
-//    @Query(value = "")
+
 
     /**
-     * 根据用户id查询其收获地址
-     * @param user_Id
-     * @return List<Address>
+     * 通过用户ID查询地址表
+     * @param user_id
+     * @return
      */
-    @Query(value = "select * from address where user_id= ?1", nativeQuery = true)
-    List<Address> findByUser_id(Integer user_Id);
-
-    //
     @Query(value = "select a from Address a where  a.user_id = :user_id")
     Address findAddByUid(@Param("user_id")Integer user_id);
 }

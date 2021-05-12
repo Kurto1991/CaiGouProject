@@ -14,9 +14,9 @@ public class Custom_MenuService {
     private Custom_MenuDao custom_menuDao;
 
 
-    public Custom_Menu selectCustMenuByMid(Integer id){
-        return custom_menuDao.selectCustMenuByMid(id);
-    }
+//    public Custom_Menu selectCustMenuByMid(Integer id){
+//        return custom_menuDao.selectCustMenuByMid(id);
+//    }
 
     public Custom_Menu save(Custom_Menu c){
         return custom_menuDao.save(c);

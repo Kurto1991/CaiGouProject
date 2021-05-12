@@ -1,8 +1,5 @@
 package com.example.caigouapp.controller;
-
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.example.caigouapp.common.Result;
 import com.example.caigouapp.entity.*;
 import com.example.caigouapp.service.CartService;
 import com.example.caigouapp.service.Custom_MenuService;
@@ -10,7 +7,7 @@ import com.example.caigouapp.service.MenuService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
+
 
 @RestController
 public class CartController {
@@ -20,38 +17,12 @@ public class CartController {
     private MenuService menuService;
     @Resource
     private Custom_MenuService custom_menuService;
-//    /**
-//     * 添加购物车数据到数据库
-//     * @param id
-//     * @param user_id
-//     * @param menus
-//     * @return
-//     */
-//    @RequestMapping(value = "/cart",method = RequestMethod.POST)
-//    public  Result insert(@RequestParam("id") Integer id, @RequestParam("user_id")Integer user_id, @RequestParam("menus")String menus){
-//
-//        Cart cart = new Cart();
-//        cart.setId(id);
-//        cart.setUser_id(user_id);
-//        cart.setMenus(menus);
-//        cartService.save(cart);
-//        return Result.success(cart);
-//
-//    }
-
-//    @RequestMapping(value = "/menuinfo",method = RequestMethod.POST)
-//    public List<Cart> select(Integer menus, Integer user_id){
-//        return cartService.select(menus,user_id);
-////        return menuService.menuInfo(menus);
-//    }
 
     @RequestMapping(value = "/updata/custMenu",method = RequestMethod.POST)
     public JSONObject updataCustMenu(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);
         int menuId = par.getInteger("id");
-        /*Cart cart = cartService.findCartById(userId);
-        cart.setCustom_menuid(str1);
-        cartService.save(cart);*/
+
         Custom_Menu custom_menu = new Custom_Menu();
 
         custom_menu.setMenu_id(menuId);
@@ -92,11 +63,15 @@ public class CartController {
     //购物车列表
     @RequestMapping(value = "/cart/list",method =RequestMethod.POST)
     public JSONObject cartInfo(@RequestBody String Body){
-//        CartMenuInfoList cartMenuInfoList = new CartMenuInfoList();
+
         JSONObject par = JSONObject.parseObject(Body);
+        //提取用户ID
         Integer id = par.getInteger("user_id");
+        //查找用户的购物车
         Cart cart = cartService.selectCartByUserId(id);
+        //获取购物车的自定义菜谱列表
         String cust_list = cart.getCustom_menuid();
+        //创建购物车菜品列表对象接收数据
         CartMenuInfoList cartMenuInfoList = cartService.getCartMenuInfo(cust_list);
 
         JSONObject res = new JSONObject();

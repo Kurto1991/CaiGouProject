@@ -19,22 +19,26 @@ public class User_OrderService {
     @Resource
     private MenuDao menuDao;
 
-    private Cart selectCartByUserId(Integer id){
-        return user_orderDao.selectCartByUserId(id);
-    }
-
 
     public void save(User_Order c){
+
         user_orderDao.save(c);
     }
 
 
+    /**
+     * 根据用户ID查询用户订单的详细信息
+     * userOrderInfoListAll--userOrderInfoList--userOrderInfo
+     * 嵌套
+     * @param user_id
+     * @return
+     */
     public UserOrderInfoListAll getUserOrderInfo(Integer user_id){
 
         List<User_Order> user_order = user_orderDao.selectUserOrderByUserId(user_id);
-        //
-//        UserOrderInfoList userOrderInfoList = new UserOrderInfoList();
+        //创建拥有该用户所有订单信息的对象
         UserOrderInfoListAll userOrderInfoListAll = new UserOrderInfoListAll();
+        //获取一个订单的信息
         for (User_Order userOrder : user_order) {
             UserOrderInfoList userOrderInfoList = new UserOrderInfoList();
             userOrderInfoList.setRemark(userOrder.getRemark());//备注
@@ -47,7 +51,7 @@ public class User_OrderService {
             Address address = addressDao.findAddByUid(user_id);
             userOrderInfoList.setPhone(address.getPhone());
             userOrderInfoList.setAddress(address.getAddress());
-
+            //获取一个订单中的一个菜谱的信息
             String str = userOrder.getCustom_menuid_list();
             String[] A = str.split(",");
             for (String s : A) {
@@ -64,7 +68,7 @@ public class User_OrderService {
                 userOrderInfo.setName(menu.getName());
                 userOrderInfo.setTags(menu.getTags());
                 userOrderInfo.setMultiple(custom_menu.getMultiple_list());
-
+                //获取一个菜谱的食材信息
                 String str1 = custom_menu.getFood_id_list();
                 String[] B = str1.split(",");
                 for (String s1 : B) {
@@ -72,51 +76,17 @@ public class User_OrderService {
                     Food f =menuDao.findByFoodId(ID);
                     userOrderInfo.getList().add(f);
                 }
+                //将一个菜谱加入到一个订单中
                 userOrderInfoList.getInfo().add(userOrderInfo);
             }
+            //将一个订单加入订单列表
             userOrderInfoListAll.getInfo().add(userOrderInfoList);
         }
+        //返回订单列表
         return userOrderInfoListAll;
     }
 
 }
 
-//        userOrderInfoList.setRemark(user_order.getRemark());
-//        userOrderInfoList.setOrderNumber(123456);
-//        userOrderInfoList.setOrderState(user_order.getStatus());
-//        userOrderInfoList.setOderCreatTime("2021-05-15  15:05:77");
-//        userOrderInfoList.setOderServeTime("2021-05-15  15:55:77");
-//        userOrderInfoList.setPrice(user_order.getPrice());
-//        Address address = addressDao.findAddByUid(user_id);
-//        userOrderInfoList.setPhone(address.getPhone());
-//        userOrderInfoList.setAddress(address.getAddress());
 
-//        String str = user_order.getCustom_menuid_list();
-//        String[] A = str.split(",");
-//        for (String s : A) {
-//            int id = Integer.parseInt(s);
-//            Custom_Menu custom_menu = custom_menuDao.selectCustMenuById(id);
-//            UserOrderInfo userOrderInfo =new UserOrderInfo();
-//
-//            userOrderInfo.setPrice(custom_menu.getPrice());
-//            userOrderInfo.setMenuId(custom_menu.getMenu_id());
-//            userOrderInfo.setId(custom_menu.getId());
-//            Menu menu = menuDao.selectMenuById(custom_menu.getMenu_id());
-//            userOrderInfo.setAvatar(menu.getAvatar());
-//            userOrderInfo.setMethod(menu.getMethod());
-//            userOrderInfo.setName(menu.getName());
-//            userOrderInfo.setTags(menu.getTags());
-//            userOrderInfo.setMultiple(custom_menu.getMultiple_list());
-//
-//            String str1 = custom_menu.getFood_id_list();
-//            String[] B = str.split(",");
-//            for (String s1 : B) {
-//                int ID = Integer.parseInt(s1);
-//                Food f =menuDao.findByFoodId(ID);
-//                userOrderInfo.getList().add(f);
-//
-//            }
-//            userOrderInfoList.getInfo().add(userOrderInfo);
-//        }
-//        return userOrderInfoList;
 
