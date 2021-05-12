@@ -8,11 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Data
 @Entity
-public class Cart {
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer user_id;
-    private String custom_menuid;
+    private String ingredient;
+    private double price;
+    private Integer major;
+    private String standard_weight;
+
 }

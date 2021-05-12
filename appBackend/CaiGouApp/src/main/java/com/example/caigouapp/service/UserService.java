@@ -1,7 +1,9 @@
 package com.example.caigouapp.service;
 
 import com.example.caigouapp.dao.UserDao;
+import com.example.caigouapp.entity.Cart;
 import com.example.caigouapp.entity.User;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,4 +21,7 @@ public class UserService {
     public List<User> findUserByAccount_num(Integer account_num){
         return  userDao.findByAccount_num(account_num);
     }
+
+
+
 }

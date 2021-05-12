@@ -17,12 +17,11 @@ class CartDaoTest {
     private CartDao cartDao;
 
     @Test
-    public void insert(@RequestParam("id") Integer id, @RequestParam("user_id")Integer user_id, @RequestParam("menus")Integer menus, @RequestParam("num")Integer num){
+    public void insert(@RequestParam("id") Integer id, @RequestParam("user_id")Integer user_id, @RequestParam("menus")String menus){
        Cart cart = new Cart();
         cart.setId(id);
         cart.setUser_id(user_id);
-        cart.setMenus(menus);
-        cart.setNum(num);
+        cart.setCustom_menuid(menus);
         cartDao.save(cart);
 //        Integer rows = cartDao.insert(1,2,"3",4);
 //        System.err.println("rows=" + rows);

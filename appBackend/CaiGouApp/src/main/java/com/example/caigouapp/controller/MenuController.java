@@ -3,8 +3,12 @@ package com.example.caigouapp.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.caigouapp.common.Result;
 import com.example.caigouapp.dao.MenuDao;
+import com.example.caigouapp.entity.Food;
 import com.example.caigouapp.entity.Menu;
+import com.example.caigouapp.entity.MenuFood;
+import com.example.caigouapp.entity.MenuInfo;
 import com.example.caigouapp.service.MenuService;
 import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,18 +54,50 @@ public class MenuController {
         List<Menu> m1 = menuService.findByid(str);
         JSONArray array= JSONArray.parseArray(JSON.toJSONString(m1));
         JSONObject res = new JSONObject();
-        res.put("menus",array);
-        res.put("code",200);
         res.put("message","success");
+        res.put("code",200);
+        res.put("menus",array);
+
 
         return res;
 
     }
+//    @RequestMapping(value = "/menuInfo",method = RequestMethod.POST)
+//    public JSONArray menuInfo(Integer menus){
+//         String res =menuService.menuInfo(menus);
+//         JSONArray info = JSONArray.parseArray(res);
+//         JSONObject IN = new JSONObject();
+//         return info;
+//    }
+
     @RequestMapping(value = "/menuInfo",method = RequestMethod.POST)
-    public JSONArray menuInfo(Integer menus){
-         String res =menuService.menuInfo(menus);
-         JSONArray info = JSONArray.parseArray(res);
-         JSONObject IN = new JSONObject();
-         return info;
+    public JSONObject findMenuInfo(@RequestBody String body){
+        JSONObject par = JSONObject.parseObject(body);
+        int id = par.getInteger("id");
+
+        Menu menu = menuService.findByMenu(id);
+        //创建实体类对象
+        MenuInfo menuInfo= new MenuInfo();
+        menuInfo.setId(menu.getId());
+        menuInfo.setName(menu.getName());
+        menuInfo.setTags(menu.getTags());
+        menuInfo.setMethod(menu.getMethod());
+        menuInfo.setAvatar(menu.getAvatar());
+
+        MenuFood mf = menuService.findByMenuId(id);
+        String foodList = mf.getFood_id_list();
+        String[] A= foodList.split(",");
+        for (String s : A) {
+            int ID = Integer.parseInt(s);
+            Food f =menuService.findByFoodId(ID);
+            menuInfo.getFood().add(f);
+//            System.out.println(f.toString());
+        }
+        menuInfo.setFood_weight_list(mf.getFood_weight_list());
+        JSONObject res = new JSONObject();
+        res.put("message","success");
+        res.put("code",200);
+        res.put("data",menuInfo);
+        return  res;
     }
 }
