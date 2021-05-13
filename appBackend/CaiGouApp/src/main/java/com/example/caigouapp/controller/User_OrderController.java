@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 
-@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
+@CrossOrigin(origins = "http://106.53.148.37:8082", maxAge = 3600)
 @RestController
 public class User_OrderController {
     @Resource
@@ -66,12 +66,14 @@ public class User_OrderController {
 
 
     //获取订单的详细信息
-    @UserLoginToken
+//    @UserLoginToken
     @RequestMapping(value = "/order/info",method = RequestMethod.POST)
     public JSONObject getOrderInfo(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);
         Integer id = par.getInteger("user_id");
+        System.out.println(11);
         UserOrderInfoListAll userOrderInfoListAll = user_orderService.getUserOrderInfo(id);
+        System.out.println(44);
         JSONObject res = new JSONObject();
         res.put("message","success");
         res.put("code",200);

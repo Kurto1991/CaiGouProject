@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
+@CrossOrigin(origins = "http://106.53.148.37:8082", maxAge = 3600)
 @RestController
 public class TagController {
 

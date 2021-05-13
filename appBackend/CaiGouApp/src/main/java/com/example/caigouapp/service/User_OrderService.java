@@ -61,6 +61,8 @@ public class User_OrderService {
 
                 userOrderInfo.setPrice(custom_menu.getPrice());//price
                 userOrderInfo.setMenuId(custom_menu.getMenu_id());
+
+
                 userOrderInfo.setId(custom_menu.getId());
                 Menu menu = menuDao.selectMenuById(custom_menu.getMenu_id());
                 userOrderInfo.setAvatar(menu.getAvatar());

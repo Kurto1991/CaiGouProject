@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
+@CrossOrigin(origins = "http://106.53.148.37:8082", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController {
