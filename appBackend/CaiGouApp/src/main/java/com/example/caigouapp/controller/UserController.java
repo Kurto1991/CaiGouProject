@@ -230,17 +230,40 @@ public class UserController {
     /**
      *更新用户的地址信息
      * @param address
-     * @return
+     * @return JSONObject
      */
-    @RequestMapping(value = "/setUserAddress", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUserAddress", method = RequestMethod.POST)
     public JSONObject updateAddress(@RequestBody Address address){
         JSONObject jsonObject = new JSONObject();
 
-        addressService.saveAddress(address);
+        addressService.updateAddress(address);
         jsonObject.put("code", Constant.SUCCESS);
         jsonObject.put("msg", "操作成功");
 
         return jsonObject;
     }
 
+    /**
+     * 为用户添加一个地址
+     * @param address
+     * @return
+     */
+    @RequestMapping(value = "/addUserAddress", method = RequestMethod.POST)
+    public JSONObject addAddress(@RequestBody Address address){
+        JSONObject jsonObject = new JSONObject();
+
+        Address addressBase = new Address();
+
+        addressBase.setName(address.getName());//获取收货人
+        addressBase.setAddress(address.getAddress());//获取收货地址
+        addressBase.setPhone(address.getPhone());//获取电话号码
+        addressBase.setUser_id(address.getUser_id());//获取用户id
+
+        addressService.updateAddress(addressBase);
+
+        jsonObject.put("code", Constant.SUCCESS);
+        jsonObject.put("msg", "操作成功");
+
+        return jsonObject;
+    }
 }

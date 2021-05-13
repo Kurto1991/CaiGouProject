@@ -4,6 +4,7 @@ import com.example.caigouapp.dao.AddressDao;
 import com.example.caigouapp.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class AddressService {
      * 更新用户收获地址
      * @param address
      */
-    public void saveAddress(Address address){
-        addressDao.save(address);
+    @Transactional
+    public void updateAddress(Address address){
+        addressDao.saveAndFlush(address);
     }
 }
