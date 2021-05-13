@@ -35,11 +35,11 @@ public class MenuController {
      * @return
      */
     @RequestMapping(value = "/menu",method = RequestMethod.POST)
-    public JSONObject m1(@RequestBody String name){
+    public JSONObject m1(@RequestBody JSONObject name){
 
 
-        JSONObject par = JSONObject.parseObject(name);
-        String str = par.getString("searchWord");
+//        JSONObject par = JSONObject.parseObject(name);
+        String str = name.getString("searchWord");
         //获得符合条件的菜谱列表
         List<Menu> m1 = menuService.findMenu(str);
         JSONArray array= JSONArray.parseArray(JSON.toJSONString(m1));
@@ -57,11 +57,11 @@ public class MenuController {
      * @return
      */
     @RequestMapping(value = "/menuid",method = RequestMethod.POST)
-    public JSONObject m2(@RequestBody String id){
+    public JSONObject m2(@RequestBody JSONObject id){
 
 
-        JSONObject par = JSONObject.parseObject(id);
-        Integer str = par.getInteger("searchId");
+//        JSONObject par = JSONObject.parseObject(id);
+        Integer str = id.getInteger("searchId");
         List<Menu> m1 = menuService.findByid(str);
         JSONArray array= JSONArray.parseArray(JSON.toJSONString(m1));
         JSONObject res = new JSONObject();
@@ -79,9 +79,9 @@ public class MenuController {
      * @return
      */
     @RequestMapping(value = "/menuInfo",method = RequestMethod.POST)
-    public JSONObject findMenuInfo(@RequestBody String body){
-        JSONObject par = JSONObject.parseObject(body);
-        int id = par.getInteger("id");
+    public JSONObject findMenuInfo(@RequestBody JSONObject body){
+//        JSONObject par = JSONObject.parseObject(body);
+        int id = body.getInteger("id");
 
         Menu menu = menuService.findByMenu(id);
         //创建实体类对象，将从相关表查询到的数据放进对象里

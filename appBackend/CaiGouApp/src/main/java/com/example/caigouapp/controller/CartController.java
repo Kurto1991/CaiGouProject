@@ -19,9 +19,9 @@ public class CartController {
     private Custom_MenuService custom_menuService;
 
     @RequestMapping(value = "/updata/custMenu",method = RequestMethod.POST)
-    public JSONObject updataCustMenu(@RequestBody String Body){
-        JSONObject par = JSONObject.parseObject(Body);
-        int menuId = par.getInteger("id");
+    public JSONObject updataCustMenu(@RequestBody JSONObject Body){
+//        JSONObject par = JSONObject.parseObject(Body);
+        int menuId = Body.getInteger("id");
 
         Custom_Menu custom_menu = new Custom_Menu();
 
@@ -31,17 +31,17 @@ public class CartController {
 
         custom_menu.setFood_id_list(menus);
 
-        String weight = par.getString("Multiple");
+        String weight = Body.getString("Multiple");
         custom_menu.setMultiple_list(weight);
 
-        String foodlist =par.getString("food_id_list");
+        String foodlist =Body.getString("food_id_list");
         custom_menu.setFood_id_list(foodlist);
 
-        Double price = par.getDouble("price");
+        Double price = Body.getDouble("price");
         custom_menu.setPrice(price);
         Custom_Menu t = custom_menuService.save(custom_menu);
         //插入custommenu获取id 输入到购物车
-        int userId = par.getInteger("userId");
+        int userId = Body.getInteger("userId");
         String str = cartService.findCartMenu(userId);
         String str1 = "";
         if (str == null) str = "";
@@ -62,11 +62,11 @@ public class CartController {
 
     //购物车列表
     @RequestMapping(value = "/cart/list",method =RequestMethod.POST)
-    public JSONObject cartInfo(@RequestBody String Body){
+    public JSONObject cartInfo(@RequestBody JSONObject Body){
 
-        JSONObject par = JSONObject.parseObject(Body);
+//        JSONObject par = JSONObject.parseObject(Body);
         //提取用户ID
-        Integer id = par.getInteger("user_id");
+        Integer id = Body.getInteger("user_id");
         //查找用户的购物车
         Cart cart = cartService.selectCartByUserId(id);
         //获取购物车的自定义菜谱列表

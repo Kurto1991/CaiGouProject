@@ -27,10 +27,10 @@ public class User_OrderController {
 
     //生成订单
     @RequestMapping(value = "/order",method = RequestMethod.POST)
-    public JSONObject creatOrder(@RequestBody String Body){
-        JSONObject par = JSONObject.parseObject(Body);
+    public JSONObject creatOrder(@RequestBody JSONObject Body){
+//        JSONObject par = JSONObject.parseObject(Body);
         //得到用户ID
-        int user_id = par.getInteger("user_id");
+        int user_id = Body.getInteger("user_id");
         //通过购物车实体类对象获取信息
         Cart cart = cartService.findCartById(user_id);
         String str = cart.getCustom_menuid();
@@ -66,9 +66,9 @@ public class User_OrderController {
 
     //获取订单的详细信息
     @RequestMapping(value = "/order/info",method = RequestMethod.POST)
-    public JSONObject getOrderInfo(@RequestBody String Body){
-        JSONObject par = JSONObject.parseObject(Body);
-        Integer id = par.getInteger("user_id");
+    public JSONObject getOrderInfo(@RequestBody JSONObject Body){
+//        JSONObject par = JSONObject.parseObject(Body);
+        Integer id = Body.getInteger("user_id");
         UserOrderInfoListAll userOrderInfoListAll = user_orderService.getUserOrderInfo(id);
         JSONObject res = new JSONObject();
         res.put("message","success");
