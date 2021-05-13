@@ -1,5 +1,6 @@
 package com.example.caigouapp.controller;
 import com.alibaba.fastjson.JSONObject;
+import com.example.caigouapp.annotation.UserLoginToken;
 import com.example.caigouapp.entity.*;
 import com.example.caigouapp.service.CartService;
 import com.example.caigouapp.service.Custom_MenuService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 
+@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
 @RestController
 public class CartController {
     @Resource
@@ -18,6 +20,7 @@ public class CartController {
     @Resource
     private Custom_MenuService custom_menuService;
 
+    @UserLoginToken
     @RequestMapping(value = "/updata/custMenu",method = RequestMethod.POST)
     public JSONObject updataCustMenu(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);
@@ -61,6 +64,7 @@ public class CartController {
     }
 
     //购物车列表
+    @UserLoginToken
     @RequestMapping(value = "/cart/list",method =RequestMethod.POST)
     public JSONObject cartInfo(@RequestBody String Body){
 

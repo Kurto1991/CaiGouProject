@@ -1,19 +1,18 @@
 package com.example.caigouapp.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.caigouapp.annotation.UserLoginToken;
 import com.example.caigouapp.entity.*;
 import com.example.caigouapp.service.CartService;
 import com.example.caigouapp.service.Custom_MenuService;
 import com.example.caigouapp.service.UserService;
 import com.example.caigouapp.service.User_OrderService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 
+@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
 @RestController
 public class User_OrderController {
     @Resource
@@ -26,6 +25,7 @@ public class User_OrderController {
     private Custom_MenuService custom_menuService;
 
     //生成订单
+    @UserLoginToken
     @RequestMapping(value = "/order",method = RequestMethod.POST)
     public JSONObject creatOrder(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);
@@ -64,7 +64,9 @@ public class User_OrderController {
         return  res;
     }
 
+
     //获取订单的详细信息
+    @UserLoginToken
     @RequestMapping(value = "/order/info",method = RequestMethod.POST)
     public JSONObject getOrderInfo(@RequestBody String Body){
         JSONObject par = JSONObject.parseObject(Body);

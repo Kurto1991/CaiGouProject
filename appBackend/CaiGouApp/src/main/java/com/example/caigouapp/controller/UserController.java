@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -120,7 +121,13 @@ public class UserController {
     }
 
 
+    /**
+     * 获取用户收货地址
+     * @param account
+     * @return
+     */
     //@UserLoginToken
+    @UserLoginToken
     @RequestMapping(value = "/getUserAddress/{account}", method = RequestMethod.GET)
     public JSONObject findUserAddress(@PathVariable("account") String account){
 
@@ -160,6 +167,7 @@ public class UserController {
      * @param account
      * @return
      */
+    @UserLoginToken
     @RequestMapping(value = "/getUserTags/{account}", method = RequestMethod.GET)
     public JSONObject findTags(@PathVariable("account") String account){
         JSONObject jsonObject =new JSONObject();
@@ -185,6 +193,7 @@ public class UserController {
      * @param body
      * @return JSON
      */
+    @UserLoginToken
     @RequestMapping(value = "/addUserTags", method = RequestMethod.POST)
     public JSONObject setUserTgs(@RequestBody  String body){
         JSONObject par = JSONObject.parseObject(body);
@@ -232,6 +241,7 @@ public class UserController {
      * @param address
      * @return JSONObject
      */
+    @UserLoginToken
     @RequestMapping(value = "/updateUserAddress", method = RequestMethod.POST)
     public JSONObject updateAddress(@RequestBody Address address){
         JSONObject jsonObject = new JSONObject();
@@ -248,6 +258,7 @@ public class UserController {
      * @param address
      * @return
      */
+    @UserLoginToken
     @RequestMapping(value = "/addUserAddress", method = RequestMethod.POST)
     public JSONObject addAddress(@RequestBody Address address){
         JSONObject jsonObject = new JSONObject();
