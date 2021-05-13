@@ -1,5 +1,6 @@
 package com.example.caigouapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -16,6 +17,9 @@ public class User {
 
     private String user_name;
     private String account_num;
+
+    //返回json数据时，忽略密码字段
+    @JsonIgnore
     private String password;
     private String phone;
     private String signature;

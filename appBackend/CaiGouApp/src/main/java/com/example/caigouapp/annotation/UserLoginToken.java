@@ -6,9 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义注解，用于用户登录权限token验证
+ * @author jinbin
+ * @date 2018-07-08 20:40
  */
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UserLoginToken {
     boolean required() default true;

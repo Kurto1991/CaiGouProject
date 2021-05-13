@@ -12,14 +12,12 @@ import com.example.caigouapp.entity.MenuInfo;
 import com.example.caigouapp.service.MenuService;
 import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@CrossOrigin(origins = "http://106.53.148.37/:8082", maxAge = 3600)
 @RestController
 public class MenuController {
     @Resource
