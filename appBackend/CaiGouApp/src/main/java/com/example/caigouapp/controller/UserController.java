@@ -96,7 +96,7 @@ public class UserController {
             System.out.println(userBase.toString());
 
             Cart cart = new Cart();
-            cart.setCustom_menuid(null);
+            cart.setCustom_menuid("");
             userService.addUser(userBase);
 
             cart.setUser_id(userBase.getId());//获取保存后的用户Id
