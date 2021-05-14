@@ -33,7 +33,10 @@ public class User_OrderController {
         int user_id = Body.getInteger("user_id");
         //通过购物车实体类对象获取信息
         Cart cart = cartService.findCartById(user_id);
+
         String str = cart.getCustom_menuid();
+        cart.setCustom_menuid("");
+        cartService.save(cart);
         //分割字符串
         String[] A= str.split(",");
 

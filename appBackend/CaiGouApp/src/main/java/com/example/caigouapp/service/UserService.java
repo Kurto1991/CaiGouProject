@@ -1,6 +1,8 @@
 package com.example.caigouapp.service;
 
+import com.example.caigouapp.common.Constant;
 import com.example.caigouapp.dao.UserDao;
+import com.example.caigouapp.entity.Tag;
 import com.example.caigouapp.entity.User;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,17 +52,26 @@ public class UserService {
     public String[] findTagsByAccount(String account) {
         User user = userDao.findByAccount_num(account);
 
-        String tags = user.getTags();
-        //用户tags为空
-        if(StringUtils.isBlank(tags)){
-            String[] error ={"empty"};
+
+        //用户未找到
+        if(user == null){
+            String[] error ={Constant.USER_NOTFOUND};
             return  error;
         }
-        else{
-            String[] tagsSplit = tags.split(",");
-
-            return tagsSplit;
+        else {
+            String tags = user.getTags();
+            //用户tags为空
+            if(StringUtils.isEmpty(tags)){
+                String[] error ={"empty"};
+                return  error;
+            }
+            else{
+                String[] tagsSplit = tags.split(",");
+                System.out.println("no");
+                return tagsSplit;
+            }
         }
+
 
     }
     /**

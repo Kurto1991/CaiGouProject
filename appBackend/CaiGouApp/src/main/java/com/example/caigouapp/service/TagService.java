@@ -20,4 +20,13 @@ public class TagService {
         return tagDao.findAll();
     }
 
+    /**
+     * 根据id查找tag
+     * @param id
+     * @return
+     */
+    public Tag findTagById(Integer id){
+        return tagDao.findById(id).get();
+    }
+
 }

@@ -4,14 +4,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.caigouapp.annotation.UserLoginToken;
 import com.example.caigouapp.common.Constant;
-import com.example.caigouapp.entity.Address;
-import com.example.caigouapp.entity.Cart;
-import com.example.caigouapp.entity.User;
-import com.example.caigouapp.entity.UserDTO;
-import com.example.caigouapp.service.AddressService;
-import com.example.caigouapp.service.CartService;
-import com.example.caigouapp.service.TokenService;
-import com.example.caigouapp.service.UserService;
+import com.example.caigouapp.dao.TagDao;
+import com.example.caigouapp.entity.*;
+import com.example.caigouapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +29,9 @@ public class UserController {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    TagService tagService;
 
 
     /**
@@ -185,15 +183,33 @@ public class UserController {
 
         String[] tags = userService.findTagsByAccount(account);
 
+        System.out.println(tags[0]);
         //标签为空
         if(tags[0].equals("empty")){
             jsonObject.put("msg", "用户标签为空");
             return jsonObject;
         }
+
+        //用户未找到
+        else if(tags[0].equals(Constant.USER_NOTFOUND)){
+            jsonObject.put("code", Constant.USER_NOTFOUND);
+            jsonObject.put("msg", "用户未找到……");
+
+            return jsonObject;
+        }
+
         else {
+            List<Tag> tagList = new ArrayList<>();
+            for (String t : tags){
+                Tag tag = new Tag();
+
+                tag = tagService.findTagById(Integer.valueOf(t));
+
+                tagList.add(tag);
+            }
             jsonObject.put("code", "200");
             jsonObject.put("msg", "操作成功");
-            jsonObject.put("tags", tags);
+            jsonObject.put("tags", tagList);
 
             return jsonObject;
         }
