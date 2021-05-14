@@ -78,7 +78,7 @@ public class CartController {
         if(cust_list.equals("")) {
 
             JSONObject res = new JSONObject();
-            res.put("data","购物车为空");
+            res.put("message","购物车为空");
             return res;
         }
         else {
