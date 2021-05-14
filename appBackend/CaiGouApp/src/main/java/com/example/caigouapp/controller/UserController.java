@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.caigouapp.annotation.UserLoginToken;
 import com.example.caigouapp.common.Constant;
 import com.example.caigouapp.entity.Address;
+import com.example.caigouapp.entity.Cart;
 import com.example.caigouapp.entity.User;
 import com.example.caigouapp.entity.UserDTO;
 import com.example.caigouapp.service.AddressService;
+import com.example.caigouapp.service.CartService;
 import com.example.caigouapp.service.TokenService;
 import com.example.caigouapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class UserController {
 
     @Autowired
     TokenService tokenService;
+
+    @Autowired
+    CartService cartService;
 
 
     /**
@@ -92,7 +97,13 @@ public class UserController {
             userBase.setPhone(userDTO.getPhone());//用户手机号
             System.out.println(userBase.toString());
 
+            Cart cart = new Cart();
+            cart.setCustom_menuid(null);
             userService.addUser(userBase);
+
+            cart.setUser_id(userBase.getId());//获取保存后的用户Id
+
+            cartService.save(cart);//给用户添加购物车
 
             jsonObject.put("msg", "操作成功");
             jsonObject.put("code",Constant.SUCCESS);
