@@ -106,4 +106,9 @@ public class MenuController {
         res.put("data",menuInfo);
         return  res;
     }
+
+    /**
+     * 这是一个测试
+     */
+
 }
