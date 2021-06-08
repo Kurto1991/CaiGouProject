@@ -40,21 +40,4 @@ public class AddressService {
     public void updateAddress(Address address){
         addressDao.saveAndFlush(address);
     }
-
-    /**
-     * 根据ID修改地址状态
-     * @param id
-     * @param status
-     */
-    @Transactional
-    public void updateStatus(Integer id, Integer status){
-        //获取要修改的地址
-        Address address = addressDao.findAddressById(id);
-
-        //设置其状态
-        address.setStatus(status);
-
-        //更新该地址
-        addressDao.save(address);
-    }
 }

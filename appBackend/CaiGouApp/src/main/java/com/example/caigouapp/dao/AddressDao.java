@@ -27,8 +27,4 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
      */
     @Query(value = "select * from address where user_id= ?1", nativeQuery = true)
     List<Address> findByUser_id(Integer user_Id);
-
-    @Query(value = "select * from address where id = ?1", nativeQuery = true)
-    Address findAddressById(Integer id);
-
 }
