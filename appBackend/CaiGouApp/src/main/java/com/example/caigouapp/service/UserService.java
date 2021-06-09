@@ -81,5 +81,14 @@ public class UserService {
     public void update(User user){
         userDao.save(user);
     }
+
+
+    /**
+     * 根据账号更新用户devicetoken字段
+     * @param user
+     */
+    public void updateDevicetoken(User user){
+       userDao.save(user);
+    }
 }
 

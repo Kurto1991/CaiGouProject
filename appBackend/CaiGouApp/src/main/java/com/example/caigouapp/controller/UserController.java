@@ -1,5 +1,6 @@
 package com.example.caigouapp.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.caigouapp.annotation.UserLoginToken;
@@ -301,6 +302,82 @@ public class UserController {
 
         jsonObject.put("code", Constant.SUCCESS);
         jsonObject.put("msg", "操作成功");
+
+        return jsonObject;
+    }
+
+
+    /**
+     * 更新用户devicetoken字段
+     * @param body
+     * @return
+     */
+    @RequestMapping(value = "/updateDeviceToken", method = RequestMethod.POST)
+    public JSONObject updateDeviceToken(@RequestBody String body){
+        JSONObject par = JSONObject.parseObject(body);
+        JSONObject jsonObject = new JSONObject();
+        //获取账号与devicetoken
+        String account = par.getString("account").toString();
+
+        String devicetoken = par.getString("devicetoken").toString();
+
+
+        User user = userService.findUserByAccount(account);
+        //用户存在
+        if(user != null){
+            user.setDevicetoken(devicetoken);
+
+            userService.updateDevicetoken(user);
+
+            jsonObject.put("msg","修改成功");
+            return  jsonObject;
+        }
+        //用户不存在
+        else {
+            jsonObject.put("code", Constant.USER_NOTFOUND);
+            jsonObject.put("msg", "用户未找到");
+
+            return  jsonObject;
+        }
+
+    }
+
+
+    /**
+     * 设置地址状态
+     * @param body
+     * @return
+     */
+    @RequestMapping(value = "/setAddress",method = RequestMethod.POST)
+    public JSONObject setDefaultAddress(@RequestBody String body){
+
+        JSONObject par = JSONObject.parseObject(body);
+        JSONObject jsonObject = new JSONObject();
+
+        
+        //获取要修改地址的id
+        Integer address_id = Integer.valueOf(par.getString("address_id").toString());
+        //获取用户账号
+        Integer user_id = addressService.findAddressById(address_id).getUser_id();
+
+
+        List<Address> addressList = addressService.findAddressByUserId(user_id);
+
+        for(Address a:addressList){
+            //将目标地址状态改为1
+            if(a.getId() == address_id && a.getStatus().equals(0)){
+                a.setStatus(1);
+
+                addressService.updateAddress(a);
+            }
+            //修改其他状态为1的地址
+            else if(a.getId() != address_id && a.getStatus().equals(1)){
+                a.setStatus(0);
+
+                addressService.updateAddress(a);
+            }
+        }
+        jsonObject.put("msg", "地址状态修改成功");
 
         return jsonObject;
     }

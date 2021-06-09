@@ -15,4 +15,5 @@ public interface UserDao extends JpaRepository<User,Integer> {
      */
     @Query(value = "SELECT * from user where user.account_num = ?1",nativeQuery = true)
     User findByAccount_num(String account_num);
+
 }

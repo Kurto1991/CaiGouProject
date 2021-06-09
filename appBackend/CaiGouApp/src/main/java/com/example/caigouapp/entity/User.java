@@ -21,8 +21,11 @@ public class User {
     //返回json数据时，忽略密码字段
     @JsonIgnore
     private String password;
+
     private String phone;
     private String signature;
     private String tags;
     private String avatar;
+
+    private String devicetoken;
 }
