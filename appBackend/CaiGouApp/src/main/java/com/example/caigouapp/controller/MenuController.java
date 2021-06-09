@@ -5,11 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.caigouapp.common.Result;
 import com.example.caigouapp.dao.MenuDao;
-import com.example.caigouapp.entity.Food;
-import com.example.caigouapp.entity.Menu;
-import com.example.caigouapp.entity.MenuFood;
-import com.example.caigouapp.entity.MenuInfo;
+import com.example.caigouapp.dao.UserDao;
+import com.example.caigouapp.entity.*;
 import com.example.caigouapp.service.MenuService;
+import com.example.caigouapp.service.UserService;
 import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +21,12 @@ import java.util.List;
 public class MenuController {
     @Resource
     private MenuService menuService;
-
+    @Resource
+    private UserService userService;
 
     @Autowired
     MenuDao menudao;
+    UserDao userDao;
 
     /**
      * 接收关键词
@@ -108,7 +109,25 @@ public class MenuController {
     }
 
     /**
-     * 这是一个测试1
+     * 这是一个未完成的接口
      */
+    @RequestMapping(value = "/recommend",method = RequestMethod.POST)
+    public JSONObject recommend(@RequestBody String body){
+        JSONObject par = JSONObject.parseObject(body);
+        int id = par.getInteger("id");
+
+        User user = userService.findById(id);
+        String str = user.getTags();
+        String[] A= str.split(",");
+        int ID = Integer.parseInt(A[0]);
+        String tag = menuService.selectTagById(ID);
+        Menu menu = menuService.findRandomMenu(tag);
+        JSONObject res = new JSONObject();
+        res.put("message","success");
+        res.put("code",200);
+        res.put("data",menu);
+        return  res;
+
+    }
 
 }

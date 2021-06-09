@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class MenuService {
@@ -33,10 +34,10 @@ public class MenuService {
     }
 
 
-   public MenuFood findByMenuId(Integer id)
-   {
+    public MenuFood findByMenuId(Integer id)
+    {
         return menuDao.findByMenuId(id);
-   }
+    }
 
     public Food findByFoodId(Integer id){
 
@@ -54,7 +55,25 @@ public class MenuService {
         return menuDao.selectMenuById(id);
     }
 
+    /**
+     * 根据ID查找标签
+     * @param id
+     * @return
+     */
+    public String selectTagById(Integer id){
+        return menuDao.selectTagById(id);
+    }
 
+    public Menu selectMenuByTag(String tag){
+        return menuDao.selectMenuByTag(tag);
+    }
 
-
+    public Menu findRandomMenu(String tag){
+        Integer range;
+        range = menuDao.getMenuNum(tag);
+        Random random = new Random();
+        Integer rand;
+        rand = random.nextInt(range);
+        return menuDao.getMenuRandom(tag,rand);
+    }
 }
