@@ -297,6 +297,7 @@ public class UserController {
         addressBase.setAddress(address.getAddress());//获取收货地址
         addressBase.setPhone(address.getPhone());//获取电话号码
         addressBase.setUser_id(address.getUser_id());//获取用户id
+        addressBase.setStatus(0);//地址状态为0
 
         addressService.updateAddress(addressBase);
 
@@ -354,7 +355,7 @@ public class UserController {
         JSONObject par = JSONObject.parseObject(body);
         JSONObject jsonObject = new JSONObject();
 
-        
+
         //获取要修改地址的id
         Integer address_id = Integer.valueOf(par.getString("address_id").toString());
         //获取用户账号
@@ -373,7 +374,6 @@ public class UserController {
             //修改其他状态为1的地址
             else if(a.getId() != address_id && a.getStatus().equals(1)){
                 a.setStatus(0);
-
                 addressService.updateAddress(a);
             }
         }
