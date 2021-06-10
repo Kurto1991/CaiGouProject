@@ -57,4 +57,13 @@ public class AddressService {
         //更新该地址
         addressDao.save(address);
     }
+
+    /**
+     * 根据用户ID查询默认地址
+     * @param id
+     * @return
+     */
+    public Address  getAdd(Integer id){
+        return  addressDao.selectAddById(id);
+    }
 }

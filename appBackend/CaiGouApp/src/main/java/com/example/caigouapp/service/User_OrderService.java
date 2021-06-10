@@ -42,15 +42,15 @@ public class User_OrderService {
         for (User_Order userOrder : user_order) {
             UserOrderInfoList userOrderInfoList = new UserOrderInfoList();
             userOrderInfoList.setRemark(userOrder.getRemark());//备注
-            userOrderInfoList.setOrderNumber(123456);//订单号
+            userOrderInfoList.setOrderNumber(userOrder.getId());//订单号
             userOrderInfoList.setStoreName("顺丰超市");
             userOrderInfoList.setOrderState(userOrder.getStatus());
-            userOrderInfoList.setOderCreatTime("2021-05-15  15:05:77");
-            userOrderInfoList.setOderServeTime("2021-05-15  15:55:77");
+            userOrderInfoList.setOderCreatTime(userOrder.getCreatetime());
+//            userOrderInfoList.setOderServeTime("2021-05-15  15:55:77");
             userOrderInfoList.setPrice(userOrder.getPrice());
-            Address address = addressDao.findAddByUid(user_id);
-            userOrderInfoList.setPhone(address.getPhone());
-            userOrderInfoList.setAddress(address.getAddress());
+//            Address address = addressDao.findAddByUid(user_id);
+            userOrderInfoList.setPhone(userOrder.getPhone());
+            userOrderInfoList.setAddress(userOrder.getAddress());
             //获取一个订单中的一个菜谱的信息
             String str = userOrder.getCustom_menuid_list();
             String[] A = str.split(",");

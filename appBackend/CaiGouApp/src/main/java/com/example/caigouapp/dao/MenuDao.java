@@ -79,9 +79,21 @@ public interface MenuDao extends JpaRepository<Menu,Integer>{
     @Query(value = "select * from menu where tags = ?1 limit 1",nativeQuery = true)
     Menu selectMenuByTag( String tag);
 
+    /**
+     * 获取特定标签的菜谱数量
+     * @param tag
+     * @return
+     */
     @Query(value = "select count(*) from menu where tags = ?1",nativeQuery = true)
     Integer getMenuNum(String tag);
 
+    /**
+     * 根据标签和随机数推荐菜谱
+     *
+     * @param tag
+     * @param randomNum
+     * @return
+     */
     @Query(value = "select * from menu where tags = ?1 limit ?2,1",nativeQuery = true)
     Menu getMenuRandom(String tag,Integer randomNum);
 }

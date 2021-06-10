@@ -20,6 +20,8 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
     @Query(value = "select a from Address a where  a.user_id = :user_id")
     Address findAddByUid(@Param("user_id")Integer user_id);
 
+    @Query(value = "select a from Address a where  a.user_id = :user_id and a.status = 1")
+    Address selectAddById(@Param("user_id") Integer user_id);
     /**
      * 根据用户id查询其收获地址
      * @param user_Id

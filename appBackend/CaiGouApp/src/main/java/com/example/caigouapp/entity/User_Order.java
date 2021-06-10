@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import java.util.Date;
+
 @Data
 @Entity
 public class User_Order {
@@ -17,6 +19,10 @@ public class User_Order {
     private String custom_menuid_list;
     private Integer store_id;
     private double price;
-    private Integer address =0;
+    private String address;
+    private String phone;
+    private String createtime;
+    private String deliverytime;
+
 
 }
