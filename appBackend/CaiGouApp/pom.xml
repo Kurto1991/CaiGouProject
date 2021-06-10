@@ -80,6 +80,28 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 第三方依赖包 -->
+        <dependency>
+            <groupId>umeng-common-9.3.8</groupId>
+            <artifactId>umeng-common</artifactId>
+            <version>9.3.8</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/libs/umeng-common-9.3.8.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>accs_sdk_aranger-1.0.6</groupId>
+            <artifactId>accss_sdk_arranger</artifactId>
+            <version>1.0.6</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/libs/accs_sdk_aranger-1.0.6.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>umeng-push-6.3.3</groupId>
+            <artifactId>umeng-push</artifactId>
+            <version>6.3.3</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/libs/umeng-push-6.3.3.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
