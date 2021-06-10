@@ -357,7 +357,7 @@ public class UserController {
 
 
         //获取要修改地址的id
-        Integer address_id = Integer.valueOf(par.getString("address_id").toString());
+        Integer address_id = par.getInteger("address_id");
         //获取用户账号
         Integer user_id = addressService.findAddressById(address_id).getUser_id();
 
