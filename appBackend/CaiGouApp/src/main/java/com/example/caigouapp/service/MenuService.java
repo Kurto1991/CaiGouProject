@@ -68,6 +68,11 @@ public class MenuService {
         return menuDao.selectMenuByTag(tag);
     }
 
+    /**
+     * 根据标签获取菜谱数量，然后生成随机数，随机推荐一个菜品
+     * @param tag
+     * @return
+     */
     public Menu findRandomMenu(String tag){
         Integer range;
         range = menuDao.getMenuNum(tag);

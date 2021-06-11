@@ -76,6 +76,11 @@ public interface MenuDao extends JpaRepository<Menu,Integer>{
     @Query(value = "select t.tag from Tag t where t.tag_id = :id")
     String selectTagById(@Param("id") Integer id);
 
+    /**
+     * 根据标签查找菜谱
+     * @param tag
+     * @return
+     */
     @Query(value = "select * from menu where tags = ?1 limit 1",nativeQuery = true)
     Menu selectMenuByTag( String tag);
 
