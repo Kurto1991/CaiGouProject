@@ -377,7 +377,7 @@ public class UserController {
                 addressService.updateAddress(a);
             }
         }
-        jsonObject.put("msg", "地址状态修改成功");
+        jsonObject.put("message", "地址状态修改成功");
 
         return jsonObject;
     }

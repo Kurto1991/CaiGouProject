@@ -28,20 +28,23 @@ public class QuartzService {
 
 
     //0 0 7/23 * * ?   0/10 * * * * ?
-    @Scheduled(cron = "0 0 7/23 * * ?")
+    @Scheduled(cron = "0/20 * * * * ?")
     public void quartzMenu(){
         int index = 0;//数据库数据下标，从第0条数据开始，每10个用户进行一次推送
-        int num = userDao.countAll();//用户总数量
+//        int num = userDao.countAll();//用户总数量
+//
+//        //遍历用户list集合
+//        while(index <= num){
+//            List<User> userList = userDao.findAllUser(index);
+//            for (User user:userList){
+//                pushToUser(user);
+//            }
+//
+//            index+=10;
+//        }
+        User user = userDao.findByAccount_num("1");
 
-        //遍历用户list集合
-        while(index <= num){
-            List<User> userList = userDao.findAllUser(index);
-            for (User user:userList){
-                pushToUser(user);
-            }
-
-            index+=10;
-        }
+        pushToUser(user);
 
     }
 
@@ -64,6 +67,8 @@ public class QuartzService {
         //根据该tag推荐一道菜
         Menu menu = menuService.findRandomMenu(menuTag);
 
+        System.out.println("userName:"+user.getUser_name()+"\nmenuName:"+menu.getName()+
+                            "\navatar:"+menu.getAvatar()+"\ndevicetoken:"+user.getDevicetoken());
         //推送消息
         DebugNotification.send(user.getUser_name(),menu.getName(),menu.getAvatar(),user.getDevicetoken());
     }
