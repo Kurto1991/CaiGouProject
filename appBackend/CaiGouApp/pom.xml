@@ -51,11 +51,22 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.57</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
         <!--    JWT    -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>3.4.0</version>
+        </dependency>
+        <!--   Alibaba的JSONObject对象     -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.44</version>
         </dependency>
         <!--String Utils-->
         <dependency>
@@ -69,100 +80,27 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.ezmorph</groupId>
-            <artifactId>ezmorph</artifactId>
-            <version>1.0.6</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
-
         <!-- 第三方依赖包 -->
         <dependency>
             <groupId>umeng-common-9.3.8</groupId>
             <artifactId>umeng-common</artifactId>
             <version>9.3.8</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/common/common_android_9.3.8/umeng-common-9.3.8.jar</systemPath>
+            <systemPath>${basedir}/src/main/resources/libs/umeng-common-9.3.8.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>accs_sdk_aranger-1.0.6</groupId>
             <artifactId>accss_sdk_arranger</artifactId>
             <version>1.0.6</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/accs_sdk_aranger-1.0.6.jar</systemPath>
+            <systemPath>${basedir}/src/main/resources/libs/accs_sdk_aranger-1.0.6.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>umeng-push-6.3.3</groupId>
             <artifactId>umeng-push</artifactId>
             <version>6.3.3</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/umeng-push-6.3.3.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>accs_sdk_taobao-3.4.2.7-umeng</groupId>
-            <artifactId>accs_sdk_taobao-umeng</artifactId>
-            <version>3.4.2.7</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/accs_sdk_taobao-3.4.2.7-umeng.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>alicloud-android-beacon-no-net-1.0.5</groupId>
-            <artifactId>alicloud-android-beacon-no-net</artifactId>
-            <version>1.0.5</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/alicloud-android-beacon-no-net-1.0.5.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>alicloud-android-httpdns-1.3.2.3-no-bssid-release</groupId>
-            <artifactId>alicloud-android-httpdns-no-bssid-release</artifactId>
-            <version>1.3.2.3</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/alicloud-android-httpdns-1.3.2.3-no-bssid-release.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>alicloud-android-sdk-utils-no-ut-2.0.0</groupId>
-            <artifactId>alicloud-android-sdk-utils-no-ut</artifactId>
-            <version>2.0.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/alicloud-android-sdk-utils-no-ut-2.0.0.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>networksdk-3.5.8-open</groupId>
-            <artifactId>networksdk-open</artifactId>
-            <version>3.5.8</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/networksdk-3.5.8-open.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>tnet4android-3.1.14.10-open</groupId>
-            <artifactId>tnet4android-open</artifactId>
-            <version>3.1.14.10</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/libs/Android/push/push_android_6.3.3/push/libs/tnet4android-3.1.14.10-open.jar</systemPath>
+            <systemPath>${basedir}/src/main/resources/libs/umeng-push-6.3.3.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -179,7 +117,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
         </plugins>
