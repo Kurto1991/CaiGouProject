@@ -43,6 +43,7 @@ public class QuartzService {
             index+=10;
         }
 
+
     }
 
     /**
@@ -64,6 +65,8 @@ public class QuartzService {
         //根据该tag推荐一道菜
         Menu menu = menuService.findRandomMenu(menuTag);
 
+        System.out.println("userName:"+user.getUser_name()+"\nmenuName:"+menu.getName()+
+                            "\navatar:"+menu.getAvatar()+"\ndevicetoken:"+user.getDevicetoken());
         //推送消息
         DebugNotification.send(user.getUser_name(),menu.getName(),menu.getAvatar(),user.getDevicetoken());
     }
