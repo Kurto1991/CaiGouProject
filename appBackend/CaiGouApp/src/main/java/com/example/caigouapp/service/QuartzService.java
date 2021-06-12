@@ -28,23 +28,21 @@ public class QuartzService {
 
 
     //0 0 7/23 * * ?   0/10 * * * * ?
-    @Scheduled(cron = "0/20 * * * * ?")
+    @Scheduled(cron = "0 0 7/23 * * ?")
     public void quartzMenu(){
         int index = 0;//数据库数据下标，从第0条数据开始，每10个用户进行一次推送
-//        int num = userDao.countAll();//用户总数量
-//
-//        //遍历用户list集合
-//        while(index <= num){
-//            List<User> userList = userDao.findAllUser(index);
-//            for (User user:userList){
-//                pushToUser(user);
-//            }
-//
-//            index+=10;
-//        }
-        User user = userDao.findByAccount_num("1");
+        int num = userDao.countAll();//用户总数量
 
-        pushToUser(user);
+        //遍历用户list集合
+        while(index <= num){
+            List<User> userList = userDao.findAllUser(index);
+            for (User user:userList){
+                pushToUser(user);
+            }
+
+            index+=10;
+        }
+
 
     }
 
