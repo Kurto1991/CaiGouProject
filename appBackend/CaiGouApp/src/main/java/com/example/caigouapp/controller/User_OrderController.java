@@ -32,6 +32,7 @@ public class User_OrderController {
 //        JSONObject par = JSONObject.parseObject(Body);
         //得到用户ID
         int user_id = Body.getInteger("user_id");
+        String remark = Body.getString("remark");
 
         //根据用户ID获取默认地址
         Address address = addressService.getAdd(user_id);
@@ -71,15 +72,15 @@ public class User_OrderController {
         }
         //价格
         user_order.setPrice(price);
-        user_order.setRemark("。。。");
         user_order.setStatus(4);
         user_order.setStore_id(1);
         user_order.setAddress(address.getAddress());
         user_order.setPhone(address.getPhone());
 //        user_order.setCreatetime("");
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+//        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
         user_order.setCreatetime(df.format(new Date()));
+        user_order.setRemark(remark);
         user_orderService.save(user_order);
         JSONObject res = new JSONObject();
         res.put("message","success");
@@ -97,7 +98,7 @@ public class User_OrderController {
         Integer id = Body.getInteger("user_id");
 
         UserOrderInfoListAll userOrderInfoListAll = user_orderService.getUserOrderInfo(id);
-        System.out.println(44);
+//        System.out.println(44);
         JSONObject res = new JSONObject();
         res.put("message","success");
         res.put("code",200);

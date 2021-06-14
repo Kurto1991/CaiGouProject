@@ -24,7 +24,7 @@ public interface MenuDao extends JpaRepository<Menu,Integer>{
      * @param str
      * @return
      */
-    @Query(value = "select m from Menu m where m.name like %:name% or m.tags like %:name%")
+    @Query(value = "select m from Menu m where m.status=1 and m.name like %:name% or m.tags like %:name% ")
     List<Menu> findMenu (@Param("name") String str);
 
 
