@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 @CrossOrigin(origins = "http://106.53.148.37:8082", maxAge = 3600)
 @RestController
@@ -120,7 +121,7 @@ public class MenuController {
 
         User user = userService.findById(id);
         String str = user.getTags();
-        System.out.println(str);
+//        System.out.println(str);
         //判断标签是否为空
         if(str == null||str.equals("")){
            Menu menu = menuService.getMenuRan();
@@ -132,7 +133,14 @@ public class MenuController {
         }
 
         String[] A= str.split(",");
-        int ID = Integer.parseInt(A[0]);
+        //随机挑选标签
+        Integer len = A.length;
+        Integer len1 = len-1;
+        Random random = new Random();
+        Integer rand;
+        rand = random.nextInt(len1);
+        int ID = Integer.parseInt(A[rand]);
+//        System.out.println(ID);
         String tag = menuService.selectTagById(ID);
         Menu menu = menuService.findRandomMenu(tag);
         JSONObject res = new JSONObject();
