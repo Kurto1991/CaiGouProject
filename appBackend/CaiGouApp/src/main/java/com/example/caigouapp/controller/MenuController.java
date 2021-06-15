@@ -121,6 +121,7 @@ public class MenuController {
         User user = userService.findById(id);
         String str = user.getTags();
         System.out.println(str);
+        //判断标签是否为空
         if(str == null||str.equals("")){
            Menu menu = menuService.getMenuRan();
             JSONObject res = new JSONObject();
