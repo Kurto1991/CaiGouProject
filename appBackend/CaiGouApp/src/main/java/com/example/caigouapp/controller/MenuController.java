@@ -109,7 +109,9 @@ public class MenuController {
     }
 
     /**
-     * 这是一个未完成的接口
+     * 推荐菜谱接口
+     * @param body
+     * @return
      */
     @RequestMapping(value = "/recommend",method = RequestMethod.POST)
     public JSONObject recommend(@RequestBody String body){
@@ -118,6 +120,16 @@ public class MenuController {
 
         User user = userService.findById(id);
         String str = user.getTags();
+        System.out.println(str);
+        if(str == null||str.equals("")){
+           Menu menu = menuService.getMenuRan();
+            JSONObject res = new JSONObject();
+            res.put("message","success");
+            res.put("code",200);
+            res.put("data",menu);
+            return  res;
+        }
+
         String[] A= str.split(",");
         int ID = Integer.parseInt(A[0]);
         String tag = menuService.selectTagById(ID);

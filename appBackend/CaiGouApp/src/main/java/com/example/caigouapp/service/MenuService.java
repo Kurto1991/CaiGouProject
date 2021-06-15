@@ -81,4 +81,21 @@ public class MenuService {
         rand = random.nextInt(range);
         return menuDao.getMenuRandom(tag,rand);
     }
+
+//    /**
+//     * 获取所有上架菜谱的数量
+//     * @return
+//     */
+//    public Integer getAllMenu(){
+//        return menuDao.getAllMenu();
+//    }
+
+    public Menu getMenuRan(){
+        Integer ran;
+        ran = menuDao.getAllMenu();
+        Random random = new Random();
+        Integer rand;
+        rand = random.nextInt(ran);
+        return menuDao.getMenuRan(rand);
+    }
 }
