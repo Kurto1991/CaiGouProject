@@ -66,4 +66,13 @@ public class AddressService {
     public Address  getAdd(Integer id){
         return  addressDao.selectAddById(id);
     }
+
+    /**
+     * 根据用户id查找其地址数量
+     * @param user_id
+     * @return
+     */
+    public int getUserAddressNum(int user_id){
+        return addressDao.getUserAddressNum(user_id);
+    }
 }
