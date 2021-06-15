@@ -30,6 +30,19 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
     @Query(value = "select * from address where user_id= ?1", nativeQuery = true)
     List<Address> findByUser_id(Integer user_Id);
 
+    /**
+     * 根据主键id查找地址
+     * @param id
+     * @return
+     */
     @Query(value = "select * from address where id = ?1", nativeQuery = true)
     Address findAddressById(Integer id);
+
+    /**
+     * 根据用户id查找地址数量
+     * @param userId
+     * @return
+     */
+    @Query(value = "select count(*) from address where user_id = ?1", nativeQuery = true)
+    int getUserAddressNum(int userId);
 }

@@ -297,14 +297,33 @@ public class UserController {
         addressBase.setAddress(address.getAddress());//获取收货地址
         addressBase.setPhone(address.getPhone());//获取电话号码
         addressBase.setUser_id(address.getUser_id());//获取用户id
-        addressBase.setStatus(0);//地址状态为0
 
-        addressService.updateAddress(addressBase);
+        //获取用户收货地址数量
+        int userAddresNum = addressService.getUserAddressNum(address.getUser_id());
 
-        jsonObject.put("code", Constant.SUCCESS);
-        jsonObject.put("msg", "操作成功");
+        //当添加第一个地址时，将其状态设置为1
+        if(userAddresNum == 0){
+            addressBase.setStatus(1);//地址状态为1
+            addressService.updateAddress(addressBase);
 
-        return jsonObject;
+            jsonObject.put("code", Constant.SUCCESS);
+            jsonObject.put("msg", "操作成功");
+
+            return jsonObject;
+        }
+        else{
+            //否则状态设置为0
+            addressBase.setStatus(0);//地址状态为0
+
+            addressService.updateAddress(addressBase);
+
+            jsonObject.put("code", Constant.SUCCESS);
+            jsonObject.put("msg", "操作成功");
+
+            return jsonObject;
+        }
+
+
     }
 
 
