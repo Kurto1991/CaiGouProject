@@ -135,12 +135,10 @@ public class MenuController {
         String[] A= str.split(",");
         //随机挑选标签
         Integer len = A.length;
-        Integer len1 = len-1;
         Random random = new Random();
         Integer rand;
-        rand = random.nextInt(len1);
+        rand = random.nextInt(len);//0-LEN-1的随机数
         int ID = Integer.parseInt(A[rand]);
-//        System.out.println(ID);
         String tag = menuService.selectTagById(ID);
         Menu menu = menuService.findRandomMenu(tag);
         JSONObject res = new JSONObject();
