@@ -4,6 +4,7 @@ import com.example.caigouapp.dao.UserDao;
 import com.example.caigouapp.entity.Menu;
 import com.example.caigouapp.entity.User;
 import com.example.caigouapp.upush.tester.DebugNotification;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -43,6 +44,7 @@ public class QuartzService {
             index+=10;
         }
 
+
     }
 
     /**
@@ -54,17 +56,29 @@ public class QuartzService {
 
         //获取用户感兴趣的菜谱tag的id
         String tags = user.getTags();
-        String[] userTag = tags.split(",");
+
+        //若用户标签为空
+        if(tags == null){
+            //随机推荐菜谱
+            Menu menu = menuService.getMenuRan();
+
+            DebugNotification.send(user.getUser_name(),menu.getName(),menu.getAvatar(),user.getDevicetoken());
+        }
+        else {
+
+            String[] userTag = tags.split(",");
 
 
-        int id = Integer.parseInt(userTag[0]);
+            int id = Integer.parseInt(userTag[0]);
 
-        String menuTag = menuService.selectTagById(id);
+            String menuTag = menuService.selectTagById(id);
 
-        //根据该tag推荐一道菜
-        Menu menu = menuService.findRandomMenu(menuTag);
+            //根据该tag推荐一道菜
+            Menu menu = menuService.findRandomMenu(menuTag);
 
-        //推送消息
-        DebugNotification.send(user.getUser_name(),menu.getName(),menu.getAvatar(),user.getDevicetoken());
+            //推送消息
+            DebugNotification.send(user.getUser_name(),menu.getName(),menu.getAvatar(),user.getDevicetoken());
+        }
+
     }
 }
