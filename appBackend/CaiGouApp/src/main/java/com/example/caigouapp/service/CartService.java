@@ -61,6 +61,7 @@ public class CartService {
             int id = Integer.parseInt(s);
             Custom_Menu custom_menu = custom_menuDao.selectCustMenuById(id);
             //用set方法给购物车里的一个菜谱类对象设值
+            cartMenuInfo.setCustomId(custom_menu.getId());
             cartMenuInfo.setId(custom_menu.getMenu_id());
             cartMenuInfo.setPrice(custom_menu.getPrice());
             cartMenuInfo.setMultiple(custom_menu.getMultiple_list());

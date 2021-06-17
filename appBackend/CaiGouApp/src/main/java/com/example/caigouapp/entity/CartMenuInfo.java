@@ -16,7 +16,7 @@ public class CartMenuInfo {
     private String tags;
     private String method;
     private String avatar;
-
+    private Integer customId;
     @OneToMany
     private List<Food> food = new ArrayList<Food>();
     private String food_weight_list;
