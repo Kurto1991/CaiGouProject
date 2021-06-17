@@ -97,5 +97,26 @@ public class CartController {
 
     }
 
+    @RequestMapping(value = "/delete/cart",method = RequestMethod.POST)
+    public JSONObject delete(@RequestBody String Body){
+        JSONObject par = JSONObject.parseObject(Body);
+        int userId = par.getInteger("userId");
+        String list = par.getString("customlist");
+        String[] A = list.split(",");
+        Cart cart = cartService.selectCartByUserId(userId);
+        String str = cart.getCustom_menuid();
+        //字符串替换并删除对应记录
+        for (String s : A) {
+            str =str.replace(s+",","");
+            int a = Integer.parseInt(s);
+            custom_menuService.del(a);
+        }
+        cart.setCustom_menuid(str);
+        cartService.save(cart);
+        JSONObject res = new JSONObject();
+        res.put("message", "success");
+        res.put("code", 200);
+        return res;
+    }
 
 }

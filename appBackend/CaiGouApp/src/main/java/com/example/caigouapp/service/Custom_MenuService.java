@@ -26,4 +26,12 @@ public class Custom_MenuService {
         return custom_menuDao.selectCustMenuById(custom_menuid);
     }
 
+    /**
+     * 删除自定义菜谱记录
+     * @param id
+     */
+    public void del(Integer id){
+        custom_menuDao.delete(id);
+    }
+
 }

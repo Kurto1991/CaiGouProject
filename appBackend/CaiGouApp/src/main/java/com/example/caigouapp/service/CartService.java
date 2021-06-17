@@ -4,6 +4,7 @@ import com.example.caigouapp.dao.CartDao;
 import com.example.caigouapp.dao.Custom_MenuDao;
 import com.example.caigouapp.dao.MenuDao;
 import com.example.caigouapp.entity.*;
+import com.umeng.commonsdk.debug.I;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
@@ -88,6 +89,9 @@ public class CartService {
         return cartMenuInfoList;
     }
 
+//    public void del(Integer id){
+//        cartDao.delete(id);
+//    }
 
 
 }

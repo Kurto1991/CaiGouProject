@@ -26,6 +26,8 @@ public interface User_OrderDao extends JpaRepository<User_Order,Integer> {
     @Query(value = "select o from User_Order o where o.user_id= :user_id  order by o.id DESC")
     List<User_Order> selectUserOrderByUserId(@Param("user_id")Integer user_id);
 
+    @Query(value = "select o from User_Order  o where o.id=:id")
+    User_Order selectOrder(@Param("id")Integer id);
 
 
 

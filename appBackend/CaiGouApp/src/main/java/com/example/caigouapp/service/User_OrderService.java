@@ -88,6 +88,11 @@ public class User_OrderService {
         return userOrderInfoListAll;
     }
 
+
+    public User_Order selectOrder(int id){
+        return user_orderDao.selectOrder(id);
+    }
+
 }
 
 

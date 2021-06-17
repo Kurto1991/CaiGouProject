@@ -3,9 +3,12 @@ package com.example.caigouapp.dao;
 import com.example.caigouapp.entity.Cart;
 import com.example.caigouapp.entity.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 
 
 @Repository
@@ -35,6 +38,18 @@ public interface CartDao extends JpaRepository<Cart,Integer> {
      */
     @Query(value = "select c from Cart c where c.user_id = :user_id")
     Cart selectCartByUserId(@Param("user_id")Integer user_id);
+
+    /**
+     * 根据ID删除自定义菜谱
+     * @param id
+     * @return
+     */
+
+
+//    @Modifying
+//    @Transactional
+//    @Query(value = "delete  from custom_menu where id = ?1",nativeQuery = true)
+//    Void delete(Integer id);
 
 
 

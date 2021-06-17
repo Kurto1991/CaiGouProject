@@ -105,4 +105,18 @@ public class User_OrderController {
         res.put("data",userOrderInfoListAll);
         return  res;
     }
+
+
+    @RequestMapping(value = "/delete/order",method = RequestMethod.POST)
+    public JSONObject delleteOrder(@RequestBody String Body){
+        JSONObject par = JSONObject.parseObject(Body);
+        Integer id = par.getInteger("orderId");
+        User_Order user_order = user_orderService.selectOrder(id);
+        user_order.setStatus(2);
+        user_orderService.save(user_order);
+        JSONObject res = new JSONObject();
+        res.put("message","success");
+        res.put("code",200);
+        return  res;
+    }
 }
