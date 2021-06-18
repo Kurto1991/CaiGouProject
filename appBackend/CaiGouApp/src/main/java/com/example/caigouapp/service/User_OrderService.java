@@ -46,6 +46,7 @@ public class User_OrderService {
             userOrderInfoList.setStoreName("顺丰超市");
             userOrderInfoList.setOrderState(userOrder.getStatus());
             userOrderInfoList.setOderCreatTime(userOrder.getCreatetime());
+            userOrderInfoList.setOderServeTime(userOrder.getDeliverytime());
 //            userOrderInfoList.setOderServeTime("2021-05-15  15:55:77");
             userOrderInfoList.setPrice(userOrder.getPrice());
 //            Address address = addressDao.findAddByUid(user_id);
